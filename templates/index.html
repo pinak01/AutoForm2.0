@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForm - Voice-Powered Form Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>AutoForm</h1>
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection('form-builder')">Form Builder</button>
+            <button class="nav-btn" onclick="showSection('voice-agent')">Voice Agent</button>
+            <button class="nav-btn" onclick="showSection('form-preview')" id="preview-nav" style="display: none;">Form Preview</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Form Builder Section -->
+        <div id="form-builder-section" class="section active">
+            <h2>Form Builder</h2>
+            <div class="form-builder">
+                <input type="text" id="form-title" class="form-title" placeholder="Enter form title" value="Mutual Fund Application Form">
+                
+                <div class="fields-container">
+                    <h3>Form Fields</h3>
+                    <div id="fields-list">
+                        <!-- Dynamic fields will be added here -->
+                    </div>
+                    <button class="btn" onclick="addField()">Add Field</button>
+                </div>
+
+                <div>
+                    <button class="btn btn-success" onclick="saveForm()">Save Form</button>
+                    <div id="save-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Agent Section -->
+        <div id="voice-agent-section" class="section">
+            <h2>Voice Agent</h2>
+            <div class="voice-container">
+                <div id="voice-status" class="voice-status status-waiting">
+                    Click "Start Voice Agent" to begin
+                </div>
+
+                <div class="voice-controls">
+                    <button id="start-agent-btn" class="voice-btn start" onclick="startVoiceAgent()" title="Start Voice Agent">
+                        🤖 Start Agent
+                    </button>
+                    <button id="start-listening-btn" class="voice-btn start" onclick="startListening()" disabled title="Start Listening">
+                        🎤 Start Listening
+                    </button>
+                    <button id="stop-listening-btn" class="voice-btn stop" onclick="stopListening()" disabled title="Stop Listening">
+                        ⏹️ Stop Listening
+                    </button>
+                </div>
+
+                <div id="conversation-log" class="conversation-log">
+                    <!-- Conversation messages will appear here -->
+                </div>
+
+                <div id="extracted-data" style="display: none;">
+                    <h3>Extracted Information</h3>
+                    <div id="data-preview"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Preview Section -->
+        <div id="form-preview-section" class="section">
+            <h2>Form Preview & Submit</h2>
+            <div id="form-preview-container">
+                <!-- Form preview will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

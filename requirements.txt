@@ -1,0 +1,6 @@
+Flask
+Flask-CORS
+python-dotenv
+openai
+azure-cognitiveservices-speech
+requests
