@@ -156,22 +156,47 @@ def get_current_form():
         current_form = DEFAULT_FORM
     return jsonify(current_form)
 
+# @app.route('/api/voice/start-conversation', methods=['POST'])
+# def start_conversation():
+#     global current_form
+#     if current_form is None:
+#         current_form = DEFAULT_FORM
+    
+#     # Create introduction message
+#     field_names = [field['name'] for field in current_form['fields']]
+#     #intro_message = f"Hello! I am AutoForm AI. I will help you complete the {current_form['title']}. Please tell me your {', '.join(field_names)}."
+#     intro_message = f"Hello! I am AutoForm AI. I will help you complete the {current_form['title']}. Please tell the info:"
+#     # Initialize conversation
+#     conversation_id = str(len(conversations_storage) + 1)
+#     conversations_storage[conversation_id] = {
+#         "messages": [{"role": "assistant", "content": intro_message}],
+#         "extracted_data": {},
+#         "form": current_form
+#     }
+    
+#     return jsonify({
+#         "conversation_id": conversation_id,
+#         "message": intro_message,
+#         "success": True
+#     })
 @app.route('/api/voice/start-conversation', methods=['POST'])
 def start_conversation():
-    global current_form
-    if current_form is None:
-        current_form = DEFAULT_FORM
-    
-    # Create introduction message
-    field_names = [field['name'] for field in current_form['fields']]
-    #intro_message = f"Hello! I am AutoForm AI. I will help you complete the {current_form['title']}. Please tell me your {', '.join(field_names)}."
-    intro_message = f"Hello! I am AutoForm AI. I will help you complete the {current_form['title']}. Please tell the info:"
+    data = request.json  # Add this to parse the sent JSON body
+    form = data.get('form')  # Use the sent form instead of global
+
+    if not form:  # Fallback if somehow not sent (though it should be)
+        return jsonify({"error": "No form provided"}), 400
+
+    # Create introduction message (use 'form' instead of 'current_form')
+    field_names = [field['name'] for field in form['fields']]
+    intro_message = f"Hello! I am AutoForm AI. I will help you complete the {form['title']}. Please tell the info:"
+
     # Initialize conversation
     conversation_id = str(len(conversations_storage) + 1)
     conversations_storage[conversation_id] = {
         "messages": [{"role": "assistant", "content": intro_message}],
         "extracted_data": {},
-        "form": current_form
+        "form": form  # Store the sent form here
     }
     
     return jsonify({
