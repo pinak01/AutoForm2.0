@@ -74,60 +74,60 @@ DEFAULT_FORM = {
         {"name": "Contact Number – Mobile", "type": "phone", "required": True},
         {"name": "Email ID", "type": "string", "required": True},
 
-        # Mailing Address
-        # {"name": "Address Line 1", "type": "string", "required": True},
-        # {"name": "Address Line 2", "type": "string", "required": False},
-        # {"name": "City", "type": "string", "required": True},
-        # {"name": "State", "type": "string", "required": True},
-        # {"name": "Pincode", "type": "string", "required": True},
-        # {"name": "Country", "type": "string", "required": True},
+        #Mailing Address
+        {"name": "Address Line 1", "type": "string", "required": True},
+        {"name": "Address Line 2", "type": "string", "required": False},
+        {"name": "City", "type": "string", "required": True},
+        {"name": "State", "type": "string", "required": True},
+        {"name": "Pincode", "type": "string", "required": True},
+        {"name": "Country", "type": "string", "required": True},
 
-        # # KYC & Income Details
-        # {"name": "Gross Annual Income", "type": "string", "required": True},
-        # {"name": "Net Worth", "type": "string", "required": False},
-        # {"name": "PEP Status", "type": "string", "required": True},
-        # {"name": "Occupation Type", "type": "string", "required": True},
+        # KYC & Income Details
+        {"name": "Gross Annual Income", "type": "string", "required": True},
+        {"name": "Net Worth", "type": "string", "required": False},
+        {"name": "PEP Status", "type": "string", "required": True},
+        {"name": "Occupation Type", "type": "string", "required": True},
 
-        # # Investment Scheme Selection
-        # {"name": "Scheme Name", "type": "string", "required": True},
-        # {"name": "Plan", "type": "string", "required": True},
-        # {"name": "Option", "type": "string", "required": True},
-        # {"name": "Amount", "type": "number", "required": True},
-        # {"name": "Mode of Investment", "type": "string", "required": True},
+        # Investment Scheme Selection
+        {"name": "Scheme Name", "type": "string", "required": True},
+        {"name": "Plan", "type": "string", "required": True},
+        {"name": "Option", "type": "string", "required": True},
+        {"name": "Amount", "type": "number", "required": True},
+        {"name": "Mode of Investment", "type": "string", "required": True},
 
-        # Bank Account Details
-        # {"name": "Bank Name", "type": "string", "required": True},
-        # {"name": "Branch", "type": "string", "required": True},
-        # {"name": "Account Number", "type": "string", "required": True},
-        # {"name": "Account Type", "type": "string", "required": True},
-        # {"name": "IFSC Code", "type": "string", "required": True},
-        # {"name": "MICR", "type": "string", "required": True},
+        #Bank Account Details
+        {"name": "Bank Name", "type": "string", "required": True},
+        {"name": "Branch", "type": "string", "required": True},
+        {"name": "Account Number", "type": "string", "required": True},
+        {"name": "Account Type", "type": "string", "required": True},
+        {"name": "IFSC Code", "type": "string", "required": True},
+        {"name": "MICR", "type": "string", "required": True},
 
-        # # Investment & Payment Details
-        # {"name": "Total Investment Amount", "type": "number", "required": True},
-        # {"name": "Payment Mode", "type": "string", "required": True},
-        # {"name": "Cheque/DD/UTR No.", "type": "string", "required": False},  # Conditionally required
-        # {"name": "Date", "type": "date", "required": True},
-        # {"name": "Bank Name (Payment)", "type": "string", "required": True},
+        # Investment & Payment Details
+        {"name": "Total Investment Amount", "type": "number", "required": True},
+        {"name": "Payment Mode", "type": "string", "required": True},
+        {"name": "Cheque/DD/UTR No.", "type": "string", "required": False},  # Conditionally required
+        {"name": "Date", "type": "date", "required": True},
+        {"name": "Bank Name (Payment)", "type": "string", "required": True},
 
-        # FATCA/CRS Declaration
-        # {"name": "Country of Birth", "type": "string", "required": True},
-        # {"name": "Nationality", "type": "string", "required": True},
-        # {"name": "Tax Residency Country", "type": "string", "required": True},
-        # {"name": "Tax Identification No.", "type": "string", "required": False},
+        #FATCA/CRS Declaration
+        {"name": "Country of Birth", "type": "string", "required": True},
+        {"name": "Nationality", "type": "string", "required": True},
+        {"name": "Tax Residency Country", "type": "string", "required": True},
+        {"name": "Tax Identification No.", "type": "string", "required": False},
 
-        # # Nomination Details
-        # {"name": "Nominee Name", "type": "string", "required": True},
-        # {"name": "Relationship with Applicant", "type": "string", "required": True},
-        # {"name": "Nominee Date of Birth", "type": "date", "required": False},  # Conditionally required
-        # {"name": "Nominee Address", "type": "string", "required": True},
-        # {"name": "Nominee PAN", "type": "string", "required": False},
-        # {"name": "Guardian Name", "type": "string", "required": False},  # Conditionally required
+        # Nomination Details
+        {"name": "Nominee Name", "type": "string", "required": True},
+        {"name": "Relationship with Applicant", "type": "string", "required": True},
+        {"name": "Nominee Date of Birth", "type": "date", "required": False},  # Conditionally required
+        {"name": "Nominee Address", "type": "string", "required": True},
+        {"name": "Nominee PAN", "type": "string", "required": False},
+        {"name": "Guardian Name", "type": "string", "required": False},  # Conditionally required
 
-        # # Declaration & Signature
-        # {"name": "Applicant Signature", "type": "string", "required": True},
-        # {"name": "Date (Declaration)", "type": "date", "required": True},
-        # {"name": "Place", "type": "string", "required": True}
+        # Declaration & Signature
+        
+        {"name": "Date (Declaration)", "type": "date", "required": True},
+        {"name": "Place", "type": "string", "required": True}
     ]
 }
 
