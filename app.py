@@ -151,8 +151,9 @@ def start_conversation():
     if not form:
         return jsonify({"error": "No form provided"}), 400
     field_names = [field['name'] for field in current_form['fields']]
-    intro_message = f"Hello! I am AutoForm AI. I will help you complete the {form['title']}. Please tell the info:"
-    
+    #intro_message = f"Hello! I am AutoForm AI. I will help you complete the {form['title']}. Please tell the info:"
+    intro_message=f"Hello! I’ll help you complete your {form['title']}.Just share the details you know. I’ll put them in the form for you and let you review everything at the end.
+If something’s missing, I’ll simply ask a quick follow-up."
     conversation_id = str(len(conversations_storage) + 1)
     conversations_storage[conversation_id] = {
         "messages": [{"role": "assistant", "content": intro_message}],
@@ -245,6 +246,22 @@ def process_speech():
         
         if missing_required:
             fields_to_ask = missing_required[:5]  # Select up to 5 missing fields
+            # prompt = f"""
+            # You are AutoForm AI, a friendly assistant helping a user fill out a {conversation["form"]["title"]}.
+            # Conversation history:
+            # {json.dumps(conversation["messages"], indent=2)}
+            
+            # Current extracted data: {json.dumps(conversation["extracted_data"])}
+            # Missing required fields: {', '.join(missing_required)}
+            
+            # Instructions:
+            # - Craft a natural, human-like response asking for the following fields: {', '.join(fields_to_ask)}.
+            # - Use the conversation history to make the response context-aware and avoid repeating questions unnecessarily.
+            # - Use friendly, conversational language, e.g., "Thanks for that! Could you tell me your {fields_to_ask[0]}{' and ' + fields_to_ask[1] if len(fields_to_ask) > 1 else ''}{', ' + fields_to_ask[2] if len(fields_to_ask) > 2 else ''}{', ' + fields_to_ask[3] if len(fields_to_ask) > 3 else ''}{', and ' + fields_to_ask[4] if len(fields_to_ask) > 4 else ''}?"
+            # - If only one field is missing, focus on that, e.g., "Great! Could you share your {fields_to_ask[0]}?"
+            # - Return only the conversational message.
+            # -Do not say this will help us complete the application or similar lines.
+            # """
             prompt = f"""
             You are AutoForm AI, a friendly assistant helping a user fill out a {conversation["form"]["title"]}.
             Conversation history:
@@ -254,13 +271,15 @@ def process_speech():
             Missing required fields: {', '.join(missing_required)}
             
             Instructions:
-            - Craft a natural, human-like response asking for the following fields: {', '.join(fields_to_ask)}.
-            - Use the conversation history to make the response context-aware and avoid repeating questions unnecessarily.
-            - Use friendly, conversational language, e.g., "Thanks for that! Could you tell me your {fields_to_ask[0]}{' and ' + fields_to_ask[1] if len(fields_to_ask) > 1 else ''}{', ' + fields_to_ask[2] if len(fields_to_ask) > 2 else ''}{', ' + fields_to_ask[3] if len(fields_to_ask) > 3 else ''}{', and ' + fields_to_ask[4] if len(fields_to_ask) > 4 else ''}?"
-            - If only one field is missing, focus on that, e.g., "Great! Could you share your {fields_to_ask[0]}?"
+            - Craft a short, natural follow-up asking for the missing fields: {', '.join(fields_to_ask)}.
+            - Keep the tone friendly and conversational. For example:
+              - If multiple fields are missing: "Thanks! Could you also share the applicant’s gender, occupation, and tax status?"
+              - If only one field is missing: "Great! Could you share the applicant’s gender?"
+            - Avoid repeating already provided information.
             - Return only the conversational message.
-            -Do not say this will help us complete the application or similar lines.
+            --Do not say this will help us complete the application or similar lines.
             """
+
             try:
                 response = client.chat.completions.create(
                     model=AZURE_OPENAI_DEPLOYMENT,
