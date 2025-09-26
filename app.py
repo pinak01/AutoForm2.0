@@ -152,8 +152,7 @@ def start_conversation():
         return jsonify({"error": "No form provided"}), 400
     field_names = [field['name'] for field in current_form['fields']]
     #intro_message = f"Hello! I am AutoForm AI. I will help you complete the {form['title']}. Please tell the info:"
-    intro_message=f"Hello! I’ll help you complete your {form['title']}.Just share the details you know. I’ll put them in the form for you and let you review everything at the end."
-If something’s missing, I’ll simply ask a quick follow-up."
+    intro_message=f"Hello! I’ll help you complete your {form['title']}.Just share the details you know. I’ll put them in the form for you and let you review everything at the end.If something’s missing, I’ll simply ask a quick follow-up."
     conversation_id = str(len(conversations_storage) + 1)
     conversations_storage[conversation_id] = {
         "messages": [{"role": "assistant", "content": intro_message}],
