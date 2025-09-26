@@ -259,6 +259,7 @@ def process_speech():
             - Use friendly, conversational language, e.g., "Thanks for that! Could you tell me your {fields_to_ask[0]}{' and ' + fields_to_ask[1] if len(fields_to_ask) > 1 else ''}{', ' + fields_to_ask[2] if len(fields_to_ask) > 2 else ''}{', ' + fields_to_ask[3] if len(fields_to_ask) > 3 else ''}{', and ' + fields_to_ask[4] if len(fields_to_ask) > 4 else ''}?"
             - If only one field is missing, focus on that, e.g., "Great! Could you share your {fields_to_ask[0]}?"
             - Return only the conversational message.
+            -Do not say this will help us complete the application or similar lines.
             """
             try:
                 response = client.chat.completions.create(
